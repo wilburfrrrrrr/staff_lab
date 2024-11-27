@@ -11,7 +11,7 @@ DB_DIALECT= os.getenv('DB_DIALECT')
 URL_CONNECTION = '{}:///{}.{}'.format(DB_DIALECT,DB_NAME, DB_DIALECT)
 
 engine = create_engine(URL_CONNECTION, connect_args={"check_same_thread": False})
-localsession = sessionmaker(autoflush=False, autocommit=False, bind=engine)
+Session = sessionmaker(autoflush=False, autocommit=False, bind=engine)
 
 Base=declarative_base()
 

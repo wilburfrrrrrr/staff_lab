@@ -1,43 +1,19 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+from config.database import engine, Base
+from middlewares.error_handler import ErrorHandler
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy.orm import Session
-import Backend.services.crud as crud
-from Backend.config.database import engine, localsession
-from Backend.models.models import Base
-from Backend.schemas.schemas import UserData, UserId
+from routers.analysts import analysts_router
+from routers.auth import auth_router
+from routers.applicants import applicants_router
+from routers.employees import employee_router
+from routers.user import user_router
+
 app = FastAPI() 
-Base.metadata.create_all(bind=engine)
+app.title = "Staff Lab" 
+app.version = "1.0"
 
-
-def get_db():
-    db= localsession()
-    try:
-        yield db
-    finally:
-        db.close()
-@app.get('/docs')
-def root():
-    return {'message': 'hi'} 
-
-@app.get('/api/users/', response_model=list[UserId])
-def get_users(db:Session = Depends(get_db)):
-    return crud.get_users(db=db)
-
-@app.get('/api/users/{id}',response_model=UserId)
-def get_user(id: int, db: Session = Depends(get_db)):  
-    user_by_id = crud.get_user_by_id(db=db, id=id)  
-    if user_by_id:
-        return user_by_id
-    raise HTTPException(status_code=404, detail="user not found")
-
-@app.post('/api/users/',response_model=UserId)
-def create_user(user:UserData, db:Session =Depends(get_db)):
-    check_name = crud.get_user_by_name(db=db, name=user.name)
-    if check_name:
-        raise HTTPException(status_code=400, detail="user already exists")
-    return crud.create_user(db=db, user=user)
-
-
+app.add_middleware(ErrorHandler)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],  # Especifica el origen del cliente (React o similar)
@@ -45,3 +21,15 @@ app.add_middleware(
     allow_methods=["*"],     # Permite todos los métodos HTTP (GET, POST, PUT, DELETE, etc.)
     allow_headers=["*"],     # Permite todos los encabezados necesarios
 )
+
+app.include_router(analysts_router)
+app.include_router(employee_router)
+app.include_router(applicants_router)
+app.include_router(user_router)
+app.include_router(auth_router)
+
+Base.metadata.create_all(bind=engine)
+
+@app.get("/", tags=['home']) # Aqui se agrega la ruta de inicio
+def message():
+    return HTMLResponse(content="<h1> STAFF LAB PROJECT </h1>")
