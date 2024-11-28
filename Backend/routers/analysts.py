@@ -7,6 +7,7 @@ from config.database import Session
 from middlewares.jwt_bearer import JWTBearer
 from services.analysts import AnalystService
 from schemas.analysts import Analyst
+from schemas.request_helpers import CreateAnalystRequest
 from services.user import UserService
 from schemas.user import User
 
@@ -31,13 +32,16 @@ def get_analyst(id: int = Path(ge=1)) -> Analyst:
 
 
 @analysts_router.post("/analyst", tags=['analyst'], response_model=dict, status_code=201, dependencies=[Depends(JWTBearer())])
-def create_analyst(user: User, analyst: Analyst) -> dict:
+def create_analyst(request: CreateAnalystRequest) -> dict:
     user_service = UserService(Session())
-    user_service.create_user(user)
+    user_service.create_user(request.user)
 
     analyst_service = AnalystService(Session())
-    analyst_data = analyst.dict()  
-    analyst_data['user_id'] = user_service.get_user_by_email(user.email).id
+    analyst_data = request.analyst 
+    user_id = user_service.get_user_by_mail(request.user.email).id
+
+    # Crear un nuevo objeto Analyst con el campo adicional
+    analyst_data = request.analyst.model_copy(update={"user_id": user_id})
     analyst_service.create_analyst(analyst_data)
 
     return JSONResponse(content={"message": "Analyst created successfully"}, status_code=201)
