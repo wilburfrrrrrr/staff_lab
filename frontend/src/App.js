@@ -1,25 +1,18 @@
-import {useEffect, useState} from 'react'
-import UserBox from './components/userBox'
-import CreateUser from './components/createUser'
-function App() {
-  const[users, setUsers] = useState([])
-  useEffect(() =>{
-  fetch ('http://127.0.0.1:8000/api/users')
-  .then(res=> res.json())
-  .then(res=> setUsers(res))
-  },[])
-  return (
-    <main>
-      <h1>hola</h1>
-      <CreateUser/>
-      {
-        users.map(user => (
-        <UserBox name={user.name} password={user.password} id={user.id} key={user.id}/>
-        ))      
-      }
-    </main>
-  )
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './components/login/login';
 
+
+function App() {
+  return (
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
