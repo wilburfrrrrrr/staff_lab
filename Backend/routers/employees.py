@@ -42,6 +42,8 @@ def create_employee(id: int, employee: Employee) -> dict:
             })
     employee.applicant_id = result.id
     EmployeeService(Session()).create_employee(employee)
+    result.state = 3
+    ApplicantsService(Session()).update_applicant(result.id, result)
     return JSONResponse(content={"message": "Employee created successfully"}, status_code=201)
 
 
