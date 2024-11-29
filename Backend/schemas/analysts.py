@@ -4,9 +4,9 @@ from datetime import date
 
 class Analyst(BaseModel):
     id: Optional[int] = None
-    user_id: int
+    user_id: Optional[int] = Field(default=1, ge=1)
     name: str = Field(default="Unknown", min_length=1, max_length=30)
-    second_name: str = Field(default="Unknown", min_length=1, max_length=30)
+    second_name: Optional[str]  = Field(default="Unknown", min_length=1, max_length=30)
     last_name: str = Field(default="Unknown", min_length=1, max_length=30)
     second_last_name: str = Field(default="Unknown", min_length=1, max_length=30)
     phone: str = Field(default="Unknown", min_length=10, max_length=15)

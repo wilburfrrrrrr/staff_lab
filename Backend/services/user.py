@@ -13,6 +13,10 @@ class UserService():
     def get_user(self, id: int):
         result = self.db.query(UserModel).filter(UserModel.id == id).first()
         return result
+    
+    def get_user_by_mail(self, mail: str):
+        result = self.db.query(UserModel).filter(UserModel.email == mail).first()
+        return result
 
     def create_user(self, user: User):
         new_user = UserModel(**user.model_dump())

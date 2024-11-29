@@ -1,19 +1,20 @@
 const BASE_URL = "http://localhost:8000";
 
-export async function protectedApi(endpoint, method, { body, ...customConfig } = {}){
+export async function protectedApi(endpoint, { body, ...customConfig } = {}){
 	const headers = { 'Content-Type': 'application/json' };
 	const token = localStorage.getItem('token');
-	console.log("cualquiera");
+	console.log(`body: ${body}`);
 	const config = {
-		method: method,
 		...customConfig,
 		headers: {
 			...headers,
 			...customConfig.headers,
 			Authorization: `Bearer ${token}`,
 		},
+		body: body,
 	};
 
+	console.log(config.body);
 	if(body){
 		console.log(body);
 		config.body = await JSON.stringify(body); 
@@ -27,7 +28,6 @@ export async function protectedApi(endpoint, method, { body, ...customConfig } =
 		if(response.ok){
 			return data;
 		}
-
 		throw new Error(data.message);
 	} catch (error) {
 		return Promise.reject(error.message);
