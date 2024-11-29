@@ -12,14 +12,14 @@ export default function LiquidacionNomina() {
 	const [employee, setEmployee] = React.useState("");
 	const [salary, setSalary] = React.useState("");
 	const [error, setError] = React.useState(null);
-	const [paymentComplete, setPaymentComplete] = React.useState(false);
 	const navigate = useNavigate();
 
 
 	async function handlePayment(e) {
 		try {
 			await payEmployee( employee.id );
-			// navigate("/nomina");
+			alert("Pago Realizado");
+			navigate("/nomina");
 		} catch (error) {
 			setError(error);
 		}

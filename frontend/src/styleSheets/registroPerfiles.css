@@ -1,0 +1,11 @@
+
+
+.form-group select {
+    background-color: #FAE9CD;
+    width: 100%; /* Asegura que el input ocupe todo el ancho disponible */
+    border-radius: 30px; /* Ajusta este valor para modificar el radio */
+    padding: 10px; /* Espaciado dentro del input */
+    font-size: 1rem;
+    box-shadow: 0 5px 5px rgba(44, 62, 80, 0.5);
+
+  }

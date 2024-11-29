@@ -76,7 +76,7 @@ export default function ListadoNomina() {
                 <p className="text-center">Cargando Empleados...</p>
             )}
 			{isModalOpen && selectedEmployee && (
-				<div className="modal">
+				<div className="modal-overlay">
 				<div className="modal-dialog">
 					<div className="modal-content">
 					<div className="modal-header">
@@ -85,18 +85,14 @@ export default function ListadoNomina() {
 					</div>
 					<div className="modal-body">
 						{/* <p>Cédula: {employee.id}</p> */}
-						<p>Nombre: {selectedEmployee.applicant.name}</p>
-						<p>Segundo Nombre: {selectedEmployee.applicant.secondName}</p>
-						<p>Apellido: {selectedEmployee.applicant.lastName}</p>
-						<p>Segundo Apellido: {selectedEmployee.applicant.secondLastName}</p>
-						<p>Teléfono: {selectedEmployee.applicant.phoneNumber}</p>
-						<p>Correo: {selectedEmployee.applicant.email}</p>
-						<p>Sueldo Base: {selectedEmployee.sueldo_base}</p>
-						<p>Horas Extra: {selectedEmployee.extra_hours}</p>
-						<p>Bonificacion: {selectedEmployee.bonificacion}</p>
-						<p>Auxilio Rodamiento: {selectedEmployee.auxilio_rodamiento}</p>
-						<p>Ultimo Pago: {selectedEmployee.last_payment}</p>
-						<p>Fecha Contratado: {selectedEmployee.date_hired}</p>
+						<li><strong>Nombre:</strong> {selectedEmployee.applicant.name} {selectedEmployee.applicant.second_name}</li>
+						<li><strong>Apellidos:</strong> {selectedEmployee.applicant.last_name} {selectedEmployee.applicant.second_last_name}</li>
+						<li><strong>Sueldo Base:</strong> {selectedEmployee.sueldo_base}</li>
+						<li><strong>Horas Extra:</strong> {selectedEmployee.extra_hours}</li>
+						<li><strong>Bonificacion:</strong> {selectedEmployee.bonificacion}</li>	
+						<li><strong>Auxilio Rodamiento:</strong> {selectedEmployee.auxilio_rodamiento}</li>
+						<li><strong>Ultimo Pago:</strong> {selectedEmployee.last_payment}</li>
+						<li><strong>Fecha Contratado:</strong> {selectedEmployee.date_hired}</li>						
 					</div>
 					<div className="modal-footer">
 						<button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={handleCloseModal}>Close</button>
