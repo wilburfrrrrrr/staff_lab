@@ -1,4 +1,4 @@
-const BASE_URL = process.env.REACT_APP_BACKEND_URL;
+const BASE_URL = "http://localhost:8000";  
 
 export async function apiClient(endpoint, method, { body, ...customConfig } = {}){
 	console.log(process.env);
@@ -34,3 +34,5 @@ export async function apiClient(endpoint, method, { body, ...customConfig } = {}
 		return Promise.reject(error.message);
 	}
 }
+
+

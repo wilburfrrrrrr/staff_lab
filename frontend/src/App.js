@@ -1,3 +1,7 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './components/login/login';
+import Preseleccion from './components/preseleccionCandidatos/preSeleccionCandidatos';
+import CandidatosSeleccionados from './components/candidatosSeleccionados/candidatosSeleccionados'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 // import {useEffect, useState} from 'react'
 import UserBox from './components/userBox'
@@ -13,6 +17,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
+          <Route path="/home" element={<HomeAnalista />} />
           <Route path="/users/" component={UserBox} />
           <Route path="/createUser/" component={CreateUser} />
           <Route path="/analistas/crear/" element={<RegistroAnalistas />} />
@@ -21,6 +26,8 @@ function App() {
           <Route path="/nomina/" element={<ListadoNomina />} />
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/preSeleccion" element={<Preseleccion/>} />
+          {/* <Route path="/seleccion" element={<CandidatosSeleccionados/>} /> */}
         </Routes>
       </Router>
     </div>
