@@ -38,7 +38,7 @@ export async function deleteApplicant(id) {
 
 export async function getApplicantsByState(state) {
     try {
-        const response = await protectedApi(`applicants/state?state=${state}`, {
+        const response = await protectedApi(`applicants/state/?state=${state}`, {
 			method: 'GET'
 		});
         return response;

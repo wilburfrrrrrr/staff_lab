@@ -8,7 +8,8 @@ import LiquidacionNomina from './components/nomina/liquidacionNomina'
 import RegistroPerfiles from './components/registroPerfiles/registroPerfiles'
 import ListadoNomina from './components/listadoNomina/listadoNomina'
 import { AuthProvider } from './components/auth/authContext';
-import { RutaAnalistaPrivada, RutaRootPrivada } from './components/privado/rutaRootPrivada';
+import RutaAnalistaPrivada from './components/privado/rutaAnalistaPrivada';
+import RootPrivada from './components/privado/rutaRootPrivada';
 
 function App() {
   return (
@@ -16,17 +17,16 @@ function App() {
       <AuthProvider>
         <Router>
           <Routes>
-            {/* <Route path="/home" element={<HomeAnalista />} /> */}
-            <Route path="/analistas/crear/" element={<RegistroAnalistas />} />
-            <Route path="/nomina/liquidaciones/" element={<LiquidacionNomina />} />
-            <Route path="/perfiles/crear/" element={<RegistroPerfiles />} />
-            <Route path="/nomina/" element={<ListadoNomina />} />
+            <Route path="/home" element={<RutaAnalistaPrivada><HomeAnalistas /></RutaAnalistaPrivada>} /> 
+            <Route path="/seleccion" element={<RutaAnalistaPrivada><CandidatosSeleccionados /></RutaAnalistaPrivada>} />
+            <Route path="/analistas/crear/" element={<RootPrivada><RegistroAnalistas /></RootPrivada>} /> 
+            <Route path="/nomina/liquidaciones/" element={<RutaAnalistaPrivada><LiquidacionNomina /></RutaAnalistaPrivada>} />
+            <Route path="/perfiles/crear/" element={<RutaAnalistaPrivada><RegistroPerfiles /></RutaAnalistaPrivada>} />
+            <Route path="/nomina/" element={<RutaAnalistaPrivada><ListadoNomina /></RutaAnalistaPrivada>} />
+            <Route path="/preSeleccion" element={<RutaAnalistaPrivada><Preseleccion/></RutaAnalistaPrivada>} />
             <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/preSeleccion" element={<Preseleccion/>} />
-            {/* <Route path="/seleccion" element={<CandidatosSeleccionados/>} /> */}
-            {/* <Route path="/user_info" element={<RutaAnalistaPrivada><UserInfo /></RutaAnalistaPrivada>} /> */}
-            </Routes>
+          </Routes>
         </Router>
       </AuthProvider>
     </div>

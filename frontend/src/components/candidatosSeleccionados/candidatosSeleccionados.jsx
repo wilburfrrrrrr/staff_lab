@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { } from '../../apiConnection/apiCandidatos/apiCandidatos';
 import { useNavigate} from 'react-router-dom';
 import { getApplicantsByState, deleteApplicant} from '../../apiConnection/apiCandidatos/apiCandidatos';
-import {createEmployee} from '../../apiConnection/apiEmpleados/apiEmpleados'
+import {crearEmpleado, createEmployee} from '../../apiConnection/apiEmpleados/apiEmpleados'
 import '../../styleSheets/seleccion.css';
 
 
@@ -46,7 +46,7 @@ export default function CandidatosSeleccionados() {
     
         try {
             console.log(employeeData)
-            const response = await createEmployee(employeeData, selectedCandidate.id);
+            const response = await crearEmpleado(employeeData, selectedCandidate.id);
             alert("Empleado creado exitosamente.");
             handleModalClose(); // Cerramos el modal
         } catch (error) {

@@ -14,7 +14,7 @@ export default function Preseleccion() {
     const [selectedCandidate, setSelectedCandidate] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
-    
+
     const handleHome = () => {
         navigate('/home');
     };
@@ -44,12 +44,8 @@ export default function Preseleccion() {
         try {
             await preselectApplicant(id);
             alert('Candidato preseleccionado correctamente');
-            // Actualiza la lista de candidatos después de preseleccionar
-            const updatedApplicants = applicants.map((applicant) =>
-                applicant.id === id ? { ...applicant, state: 2 } : applicant
-            );
-            setApplicants(updatedApplicants);
             handleModalClose();
+            window.location.reload();
         } catch (error) {
             alert('Error al preseleccionar el candidato:', error);
         }
