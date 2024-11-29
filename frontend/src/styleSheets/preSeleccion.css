@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Murecho:wght@100..900&family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap');
+.header{
+    background-color: #2C3E50;
+    padding: 10px 0;
+
+}
+
+.title {
+    font-family: 'MuseoModerno', sans-serif;
+    font-weight: 800;
+    color: #fff;
+}
+
+
+
+/* Centrar contenedor */
+.containerListado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh; /* Altura de la pantalla */
+}
+
+
+.candidate-box {
+    font-family: 'Murecho', italic;
+    font-size: 600;
+    width: 80%; /* Ajusta según sea necesario */
+    background-color: #F5D39B; /* Color de fondo */
+    border: 1px solid #ddd; /* Borde sutil */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    display: flex;
+    justify-content: space-between; /* Espaciar el nombre y botón */
+    align-items: center; /* Centrar verticalmente */
+}
+
+  /* Estilo para eliminar puntos de la lista */
+ul.list-unstyled {
+    padding: 0;
+    width: 80%;
+}
+
+
+
+
+.titulo-home {
+    font-family: 'Murecho', italic;
+    color: #fff; 
+    font-size: 600; /* Tamaño de fuente */
+    font-weight: 600;
+    justify-content: center;
+    margin: 0;
+}
+.titulo-candidatos {
+    font-family: 'Murecho', italic;
+    color: #2C3E50; 
+    font-size: 600; /* Tamaño de fuente */
+    font-weight: 600;
+    justify-content: center;
+    margin: 10;
+    padding-bottom: 5px;
+}
+
+
+.nav {
+    text-align:left; /* Centrar texto */
+    background-color: #2C3E50;
+    margin-bottom: 3%;
+    opacity: 0.7;
+    padding-bottom: 5px; /* Espacio entre texto y línea */
+    display: flex; /* Usamos flexbox para manejar la alineación */
+    justify-content: flex-start; /* Alineamos contenido a la derecha */
+    align-items: center; /* Centra verticalmente */
+    gap: 15px; /* Espaciado entre el icono y el texto */
+}
+
+.ParairAtras{
+    margin-left: 20px;
+    color: #eba637;
+}
+
+.nombre{
+    font-family: 'Murecho', italic;
+    color: #2C3E50; 
+    font-size: 600; /* Tamaño de fuente */
+    font-weight: 600;
+    text-align:left; /* Centrar texto */
+    padding-bottom: 5px; /* Espacio entre texto y línea */
+    display: flex; /* Usamos flexbox para manejar la alineación */
+    justify-content: flex-start; /* Alineamos contenido a la derecha */
+    align-items: center; /* Centra verticalmente */
+    gap: 15px;
+}
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h3 {
+    margin-bottom: 20px;
+}
+
+.modal-content ul {
+    padding: 0;
+    list-style: none;
+}
+
+.btnCS{
+    background-color: #EBA637;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.btnCS:hover{
+    border:3px;
+    background-color: #8C7244;
+
+  }
+.btnCS:active {
+    background-color: #F5D39B; 
+    /* transform: scale(0.98);  */
+    box-shadow: 0 5px 5px rgba(44, 6, 80, 0.5);
+  } 
+
+  .btnMI{
+    background-color: #EBA637;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.btnMI:hover{
+    background-color: #2C3E50; 
+    color: #fff;
+  }
+.btnMI:active {
+    background-color: #2C3E50; 
+    transform: scale(0.98); 
+    box-shadow: 0 5px 5px rgba(44, 6, 80, 0.5);
+  } 
+
+.btnsModal{
+    font-family: 'Murecho', italic;
+    color: #2C3E50; 
+    font-size: 600; /* Tamaño de fuente */
+    font-weight: 600;
+    padding-bottom: 5px; 
+    display: flex; 
+    justify-content:center; 
+    height: auto;
+    width: auto;
+    gap: 5px;
+}
+.btnPreseleccionar{
+    color:#fff;
+    text-align: center;
+    background-color: #EBA637;
+    color:#fff;
+    height: 100%;
+    width: 50%;
+}
+.btnPreseleccionar:hover{
+    background-color: #F5D39B;
+
+  }
+.btnPreseleccionar:active {
+    background-color: #F5D39B; 
+    box-shadow: 0 5px 5px rgba(44, 6, 80, 0.5);
+  } 
+.btnEliminar{
+    height: 100%;
+    width: 50%;
+}
+.btnCerrar{
+    text-align: center;
+    background-color: #2C3E50;
+    color:#fff;
+    
+}
+.btnCerrar:hover{
+    background-color: #22303e; 
+    color: #fff;
+  }
+.btnCerrar:active {
+    background-color: #2C3E50; 
+    transform: scale(0.98); 
+    box-shadow: 0 5px 5px rgba(44, 6, 80, 0.5);
+  } 
+

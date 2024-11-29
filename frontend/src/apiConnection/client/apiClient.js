@@ -1,32 +1,38 @@
-export const apiClient = {
-	fetchUsers: async () => {
-	  // Simula una llamada de API al archivo JSON
-	  	const response = await fetch('/users.json'); // Asume que está en `public/`
-		if (!response.ok) {
-			throw new Error('Failed to fetch mock data');
-		}
-		return response.json();
+const BASE_URL = "http://localhost:8000";  
+
+export async function apiClient(endpoint, method, { body, ...customConfig } = {}){
+	console.log(process.env);
+	console.log(BASE_URL);
+	const headers = { 'Content-Type': 'application/json' };
+	const config = {
+		method: method,
+		...customConfig,
+		headers: {
+			...headers,
+			...customConfig.headers,
+		},
+	};
+
+	if(body){
+		console.log(body);
+		config.body = await JSON.stringify(body);
+		console.log(config.body);
 	}
-};
+
+	try {
+		console.log(config);
+		const response = await fetch(`${BASE_URL}/${endpoint}`, config);
+		const data = await response.json();
+		console.log(data);
+
+		if(response.ok){
+			return data;
+		}
+
+		throw new Error(data.message);
+	} catch (error) {
+		return Promise.reject(error.message);
+	}
+}
 
 
-// apiClient.js
-
-//const apiUrl = "";  // Cambia esto a la URL de tu backend
-
-// export async function post(url, data) {
-//   const response = await fetch(`${apiUrl}${url}`, {
-//     method: "POST",  // Estamos usando POST porque estamos enviando datos
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(data),  // Convertimos el objeto data a un formato JSON
-//   });
-
-//   // Si la respuesta no es ok, tiramos un error
-//   if (!response.ok) {
-//     throw new Error("Error en la solicitud");
-//   }
-
-//   return await response.json();  // Devolvemos la respuesta como JSON
-// }
