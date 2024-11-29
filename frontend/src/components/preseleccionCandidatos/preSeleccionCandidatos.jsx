@@ -13,7 +13,15 @@ export default function Preseleccion() {
     const [error, setError] = useState(null);
     const [selectedCandidate, setSelectedCandidate] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
+    
+    const handleHome = () => {
+        navigate('/home');
+    };
 
+    const handleCerraSesion= () => {
+        navigate('/');
+    };  
     const handleModalOpen = (candidate) => {
         setSelectedCandidate(candidate);
         setShowModal(true);
@@ -23,6 +31,7 @@ export default function Preseleccion() {
         setShowModal(false);
         setSelectedCandidate(null);
     };
+
     function handleDownload(cvLink) {
         const link = document.createElement('a');
         link.href = {cvLink}
@@ -83,21 +92,21 @@ export default function Preseleccion() {
                 {/* Título */}
                 <div>
                     <h1 className="title">Staff Lab</h1>
+                    <Link to="/home" className="text-white text-decoration-none"></Link>
                 </div>
                 {/* Botones */}
                 <div className="botones">
-                        <button className="btn btnHome mx-2">
+                        <button className="btn btnHome mx-2" onClick={handleHome}>
                             <FontAwesomeIcon icon={faHouse}  style={{color: "#eba637", fontSize: "30px"}} />
-                            <Link to="/" className="text-white text-decoration-none"></Link>
+                            <Link to="/home" className="text-white text-decoration-none"></Link>
                         </button>
 
-                        <button className="btn btnCS mx-2 ">
-                            <Link to="/login" className="text-white text-decoration-none">Cerrar Sesión </Link>
+                        <button className="btn btnCS mx-2 "  onClick={handleCerraSesion}>
+                            Cerrar Sesión
                         </button>
 
                         <button className="btn btnUser mx-2">
                             <FontAwesomeIcon  icon={faCircleUser} style={{color: "#eba637", fontSize: "30px"}}  />
-                            <Link to="/" className="text-white text-decoration-none"></Link>
                         </button>
                 </div>
             </div>
@@ -138,8 +147,8 @@ export default function Preseleccion() {
                             <li><strong>Correo:</strong> {selectedCandidate.email}</li>
                             <li><strong>Teléfono:</strong> {selectedCandidate.phone}</li>
                             <li><strong>Género:</strong> {selectedCandidate.genre}</li>
-                            <button className="btn btn-secondary" Click={() => handleDownload(selectedCandidate.cv)}>Descargar CV</button>
-                            {/* <a href={selectedCandidate.cv} download="CV.pdf">Ver/Descargar CV</a> */}
+                            {/* <button className="btn btn-secondary" onClick={() => handleDownload(selectedCandidate.cv)}>Descargar CV</button> */}
+                            <a href={selectedCandidate.cv} download="CV.pdf">Ver/Descargar CV</a> 
                             {/* Añade más campos según sea necesario */}
                         </ul>
                         <div className="btnsModal ">

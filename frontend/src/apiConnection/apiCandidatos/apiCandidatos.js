@@ -32,7 +32,7 @@ export async function deleteApplicant(id) {
 
 export async function getApplicantsByState(state) {
     try {
-        const response = await protectedApi(`applicants/state?state=${state}`, 'GET');
+        const response = await protectedApi(`applicants/state/?state=${state}`, 'GET');
         return response;
     } catch (error) {
         console.error('Error fetching applicants by state:', error);

@@ -16,7 +16,7 @@ export async function protectedApi(endpoint, method, { body, ...customConfig } =
 
 	if(body){
 		console.log(body);
-		config.body = await JSON.stringify(body);
+		config.body = await JSON.stringify(body); 
 		console.log(config.body);
 	}
 
