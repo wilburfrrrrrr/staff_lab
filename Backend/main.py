@@ -1,10 +1,10 @@
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
-import crud
-from database import engine, localsession
-from models import Base
-from schemas import UserData, UserId
+import Backend.services.crud as crud
+from Backend.config.database import engine, localsession
+from Backend.models.models import Base
+from Backend.schemas.schemas import UserData, UserId
 app = FastAPI() 
 Base.metadata.create_all(bind=engine)
 

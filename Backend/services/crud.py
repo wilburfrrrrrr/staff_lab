@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from models import User
-from schemas import UserData
+from Backend.models.models import User
+from Backend.schemas.schemas import UserData
 
 def get_users(db:Session):
     return db.query(User).all()

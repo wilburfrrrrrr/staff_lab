@@ -18,6 +18,8 @@ function App() {
           <Route path="/nomina/liquidaciones/" element={<LiquidacionNomina />} />
           <Route path="/perfiles/crear/" element={<RegistroPerfiles />} />
           <Route path="/nomina/" element={<ListadoNomina />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </div>
