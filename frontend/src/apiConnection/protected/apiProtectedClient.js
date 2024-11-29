@@ -1,10 +1,11 @@
 const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
-export async function protectedApi(endpoint, { body, ...customConfig } = {}){
+export async function protectedApi(endpoint, method, { body, ...customConfig } = {}){
 	const headers = { 'Content-Type': 'application/json' };
 	const token = localStorage.getItem('token');
 	console.log(token);
 	const config = {
+		method: method,
 		...customConfig,
 		headers: {
 			...headers,

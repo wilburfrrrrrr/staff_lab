@@ -1,11 +1,11 @@
 const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
-export async function apiClient(endpoint, { body, ...customConfig } = {}){
+export async function apiClient(endpoint, method, { body, ...customConfig } = {}){
 	console.log(process.env);
 	console.log(BASE_URL);
 	const headers = { 'Content-Type': 'application/json' };
 	const config = {
-		method: body ? 'POST' : 'GET',
+		method: method,
 		...customConfig,
 		headers: {
 			...headers,
