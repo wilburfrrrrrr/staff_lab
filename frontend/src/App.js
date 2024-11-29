@@ -6,6 +6,7 @@ import RegistroAnalistas from './components/registroAnalistas/registroAnalistas'
 import LiquidacionNomina from './components/nomina/liquidacionNomina'
 import RegistroPerfiles from './components/registroPerfiles/registroPerfiles'
 import ListadoNomina from './components/listadoNomina/listadoNomina'
+import Login from './components/login/login'
 
 function App() {
   return (
