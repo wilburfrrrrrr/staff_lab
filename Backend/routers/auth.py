@@ -16,7 +16,7 @@ def login(user: User) -> dict:
     result = UserService(Session()).get_users()
     for existing_user in jsonable_encoder(result):
         if user.email == existing_user["email"] and check_password(existing_user["password"], user.password):
-            token = create_token(data=user.model_dump())
+            token = create_token(data=existing_user)
             return JSONResponse(content={"email": existing_user["email"],"token": token, "rol": existing_user["rol"]}, 
                                 status_code=200)
     return JSONResponse(content={"message": "Invalid credentials"},

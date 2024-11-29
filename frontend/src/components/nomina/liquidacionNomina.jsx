@@ -19,6 +19,7 @@ export default function LiquidacionNomina() {
     };
 
     const handleCerraSesion= () => {
+		localStorage.removeItem('token');
         navigate('/');
     };  
 

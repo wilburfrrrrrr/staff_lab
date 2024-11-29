@@ -27,6 +27,7 @@ export default function CandidatosSeleccionados() {
         navigate('/home');
     };
     const handleCerraSesion= () => {
+		localStorage.removeItem('token');
         navigate('/');
     };   
     const handleModalOpen = (candidate) => {

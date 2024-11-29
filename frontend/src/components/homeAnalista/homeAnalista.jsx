@@ -12,6 +12,11 @@ export default function HomeAnalistas() {
 
     const navigate = useNavigate();
 
+    const handleCerraSesion= () => {
+		localStorage.removeItem('token');
+        navigate('/');
+    };  
+
     const handleCandidatos = () => {
         navigate('/preSeleccion');
     };
@@ -37,7 +42,7 @@ export default function HomeAnalistas() {
                     </div>
                     {/* Botones */}
                     <div className="botones">
-                            <button className="btn btnCS mx-2 ">
+                            <button className="btn btnCS mx-2" onClick={handleCerraSesion}>
                                 <Link to="/" className="text-white text-decoration-none">Cerrar Sesión </Link>
                             </button>
 

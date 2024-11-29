@@ -20,8 +20,10 @@ export default function Preseleccion() {
     };
 
     const handleCerraSesion= () => {
+		localStorage.removeItem('token');
         navigate('/');
     };  
+    
     const handleModalOpen = (candidate) => {
         setSelectedCandidate(candidate);
         setShowModal(true);

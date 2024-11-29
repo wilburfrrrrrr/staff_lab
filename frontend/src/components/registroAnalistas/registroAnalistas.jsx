@@ -19,11 +19,16 @@ export default function RegistroAnalistas() {
 	const [error, setError] = React.useState(null);
 	const navigate = useNavigate();
 
+	const handleCerraSesion= () => {
+		localStorage.removeItem('token');
+        navigate('/');
+    };  
+
 	async function handleSubmit(e) {
 		e.preventDefault();
 		try {
 			await createAnalyst( name, secondName, lastName, phoneNumber, secondLastName, email, password );		
-			navigate("/analistas");
+			navigate("/");
 		} catch (error) {
 			setError(error);
 		}
@@ -40,7 +45,7 @@ export default function RegistroAnalistas() {
                 </div>
                 {/* Botones */}
                 <div className="botones">
-                        <button className="btn btnHome mx-2">
+                        <button className="btn btnHome mx-2" onClick={handleCerraSesion}>
                             <FontAwesomeIcon icon={faHouse}  style={{color: "#eba637", fontSize: "30px"}} />
                             <Link to="/" className="text-white text-decoration-none"></Link>
                         </button>

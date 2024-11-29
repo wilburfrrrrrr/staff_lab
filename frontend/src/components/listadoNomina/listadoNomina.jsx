@@ -19,6 +19,7 @@ export default function ListadoNomina() {
     };
 
     const handleCerraSesion= () => {
+		localStorage.removeItem('token');
         navigate('/');
     };  
 	
