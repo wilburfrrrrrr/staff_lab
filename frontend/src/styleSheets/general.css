@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Murecho:wght@100..900&family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap');
+.header{
+    background-color: #2C3E50;
+
+}
+.logo {
+    font-family: 'MuseoModerno', italic;
+    font-weight: 900; 
+    color: #2C3E50;
+}
+
+.texto1{
+    font-family: 'Murecho', italic;
+    font-weight: 600; 
+    color: #000000;
+}
+body {
+    background-color: #F5D39B; /* Cambia este color */
+    margin: 0;                /* Elimina márgenes por defecto */
+    height: 100vh;
+}
+
+.icon {
+    font-size: 1.5rem; /* Aumentar el tamaño del ícono */
+    margin-right: 10px; /* Espacio entre el ícono y el input */
+  }
+  
+  .form-group input {
+    background-color: #FAE9CD;
+    width: 100%; /* Asegura que el input ocupe todo el ancho disponible */
+    border-radius: 30px; /* Ajusta este valor para modificar el radio */
+    padding: 10px; /* Espaciado dentro del input */
+    font-size: 1rem;
+    box-shadow: 0 5px 5px rgba(44, 62, 80, 0.5);
+
+  }
+
+.btn{
+    background-color: #EBA637;
+    border-radius: 30px;
+}
