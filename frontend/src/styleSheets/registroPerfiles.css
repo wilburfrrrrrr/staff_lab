@@ -1,6 +1,8 @@
 
-
 .form-group select {
+    font-family: Murecho;
+    font-size: medium;
+    font-weight: 200;
     background-color: #FAE9CD;
     width: 100%; /* Asegura que el input ocupe todo el ancho disponible */
     border-radius: 30px; /* Ajusta este valor para modificar el radio */
@@ -9,3 +11,39 @@
     box-shadow: 0 5px 5px rgba(44, 62, 80, 0.5);
 
   }
+.title3{
+  font-family: 'MuseoModerno', sans-serif;
+  font-weight: 500;
+  color: #2C3E50;
+}
+.btnRegistrar{
+  font-weight: 700;
+  font-size:medium;
+  background-color: #EBA637;
+  border-radius: 30px;
+  cursor: pointer;
+  height: 8%;
+  width: 25%;
+  margin-bottom: 20px;
+}
+.btnRegistrar:hover{
+  background-color: #2C3E50; 
+  color: #fff;
+  transform: scale(0.98); 
+  box-shadow: 0 5px 5px rgba(44, 6, 80, 0.5);
+
+}
+
+.formArchivo{
+  background-color: #EBA637;
+  margin-left: 5px;
+}
+
+.formNombre{
+  font-family: MuseoModerno;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 0px;
+  
+}
+

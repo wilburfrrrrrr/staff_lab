@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCircleUser, faHouse, faAddressCard} from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState} from "react";
 
 export default function LiquidacionNomina() {
 	const [employees, setEmployees] = React.useState([]);
@@ -13,7 +14,13 @@ export default function LiquidacionNomina() {
 	const [salary, setSalary] = React.useState("");
 	const [error, setError] = React.useState(null);
 	const navigate = useNavigate();
+    const handleHome = () => {
+        navigate('/home');
+    };
 
+    const handleCerraSesion= () => {
+        navigate('/');
+    };  
 
 	async function handlePayment(e) {
 		try {
@@ -25,34 +32,44 @@ export default function LiquidacionNomina() {
 		}
 	}
 
-	React.useEffect(() => {
-		getEmployees().then((employees) => setEmployees(employees));
-	}, []);
+    useEffect(() => {
+        async function fetchEmployees() {
+            try {
+            const data = await getEmployees(); // Llama a la API
+            setEmployees(data); // Almacena los nombres en el estado
+            } catch (err) {
+            setError(err);
+            }
+        }
+        fetchEmployees();
+    }, []);
 
+    if (error) {
+        console.log(error)
+    }
 
 	return (
-		<div className="container" id="contenedorGeneral">
-			{/* <NavBar /> */}
-			<header className="header">
+		<div className="ContainerHome" >
+        <header className="header">
             <div className="container d-flex justify-content-between align-items-center">
                 {/* Título */}
                 <div>
                     <h1 className="title">Staff Lab</h1>
+                    <Link to="/home" className="text-white text-decoration-none"></Link>
                 </div>
                 {/* Botones */}
                 <div className="botones">
-                        <button className="btn btnHome mx-2">
+                        <button className="btn btnHome mx-2" onClick={handleHome}>
                             <FontAwesomeIcon icon={faHouse}  style={{color: "#eba637", fontSize: "30px"}} />
-                            <Link to="/" className="text-white text-decoration-none"></Link>
+                            <Link to="/home" className="text-white text-decoration-none"></Link>
                         </button>
 
-                        <button className="btn btnCS mx-2 ">
-                            <Link to="/login" className="text-white text-decoration-none">Cerrar Sesión </Link>
+                        <button className="btn btnCS mx-2 "  onClick={handleCerraSesion}>
+                            Cerrar Sesión
                         </button>
 
                         <button className="btn btnUser mx-2">
                             <FontAwesomeIcon  icon={faCircleUser} style={{color: "#eba637", fontSize: "30px"}}  />
-                            <Link to="/" className="text-white text-decoration-none"></Link>
                         </button>
                 </div>
             </div>

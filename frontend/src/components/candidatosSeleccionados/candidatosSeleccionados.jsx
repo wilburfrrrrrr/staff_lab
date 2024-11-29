@@ -49,6 +49,7 @@ export default function CandidatosSeleccionados() {
             const response = await crearEmpleado(employeeData, selectedCandidate.id);
             alert("Empleado creado exitosamente.");
             handleModalClose(); // Cerramos el modal
+            window.location.reload();
         } catch (error) {
             console.error("Error en createEmployee:", error.response || error.message || error || error.detail);
             alert("Hubo un error al intentar crear al empleado.");

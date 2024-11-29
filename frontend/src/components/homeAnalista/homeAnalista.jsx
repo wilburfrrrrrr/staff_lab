@@ -19,6 +19,13 @@ export default function HomeAnalistas() {
     const handleNavigatePreseleccionados = () => {
         navigate('/seleccion');
     };
+    const handleNavigateLiquidacionNomina = () => {
+        navigate('/nomina/liquidaciones/');
+    };
+    const handleNavigateNomina = () => {
+        navigate('/nomina/');
+    };
+
 
     return (
         <div className="ContainerHome">
@@ -42,7 +49,9 @@ export default function HomeAnalistas() {
             </header>
             <div className="OpcionesAnalista d-flex flex-column align-items-center">
                 <button className="btn btnPrese mt-3" onClick={handleCandidatos} >Candidatos</button> 
-                <button className="btn btnPrese2  mt-3" onClick={handleNavigatePreseleccionados}>Preseleccionados</button> 
+                <button className="btn btnPrese2  mt-3" onClick={handleNavigatePreseleccionados}>Preseleccionados</button>
+                <button className="btn btnPrese2  mt-3" onClick={handleNavigateLiquidacionNomina}>Liquicacion de Nomina</button> 
+                <button className="btn btnPrese2  mt-3" onClick={handleNavigateNomina}>Listado de Nomina</button>  
             </div>
     </div>
 
