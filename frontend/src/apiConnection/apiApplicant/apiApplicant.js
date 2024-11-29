@@ -4,21 +4,27 @@ import { apiClientMultimedia } from "../apiMultimedia/apiMultimedia";
 // import { jwtDecode } from "jwt-decode";
 
 export async function createApplicant( dataToSend ) {
-		return await apiClientMultimedia("applicants", 'POST', {
+		return await apiClientMultimedia("applicants", {
+			method: 'POST',
 			body: dataToSend,
   		});
 }
 
 export async function getApplicant({ id }) {
-	  	return await protectedApi(`applicants/${id}`, 'GET');
+	  	return await protectedApi(`applicants/${id}`, {
+			method: 'GET'
+		});
 }
 
 export async function getApplicants() {
-	return await protectedApi("applicants", 'GET');
+	return await protectedApi("applicants", {
+		method: 'GET'
+	});
 }
 
 export async function preselectApplicant({ id }) {
-	return await protectedApi(`applicants/preselect/${id}`, 'PUT', {
+	return await protectedApi(`applicants/preselect/${id}`, {
+		method: 'PUT',
 		body: { id },
 	});
 }

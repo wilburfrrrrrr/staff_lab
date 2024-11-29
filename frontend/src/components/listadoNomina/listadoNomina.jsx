@@ -3,13 +3,14 @@ import InformacionNomina from "../infoNomina/infoNomina";
 // import { NavBar } from "../navBar/navBar";
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faCircleUser, faHouse, faSquareCaretLeft,faAddressCard} from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function ListadoNomina() {
 	const [employees, setEmployees] = React.useState([]);
-	const [employee, setEmployee] = React.useState(null);
-	const [salary, setSalary] = React.useState("");
+	const [selectedEmployee, setEmployee] = React.useState(null);
 	const [isModalOpen, setIsModalOpen] = React.useState(false);
 	const [error, setError] = React.useState(null);
 	const navigate = useNavigate();
@@ -17,6 +18,7 @@ export default function ListadoNomina() {
 	
 	async function handleOpenModal(employee) {
 		setEmployee(employee);
+		console.log("seleccionado",selectedEmployee)
 		setIsModalOpen(true);
 	}
 
@@ -29,55 +31,86 @@ export default function ListadoNomina() {
 		getEmployees().then((employees) => setEmployees(employees));
 	}, []);
 
-	// table to show all the employes
-	const table = employees.map((employee) => (
-		<tr key={employee.id}>
-			<td>{employee.applicant_id}</td>
-			<td>{employee.name}</td>
-			<td>{employee.second_name}</td>
-			<td>{employee.last_name}</td>
-			<td>{employee.second_last_name}</td>
-			<td>{employee.phone}</td>
-			<td>{employee.email}</td>
-			<td>
-				<button className="btn" onClick={() => handleOpenModal(employee)}>Más Información</button>
-			</td>
-		</tr>
-	));
 
 	return (
 		<div className="container d-flex justify-content-center align-items-center vh-100">
 			{/* <NavBar /> */}
-			<h1>Listado de Nomina</h1>
-			<table>
-				<thead>
-					<tr>
-						<th>Cédula</th>
-						<th>Nombre</th>
-						<th>Segundo Nombre</th>
-						<th>Apellido</th>
-						<th>Segundo Apellido</th>
-						<th>Teléfono</th>
-						<th>Correo</th>
-						<th>Género</th>
-						<th>Estado</th>
-						<th>Salario</th>
-						<th>
+			<header className="header">
+            <div className="container d-flex justify-content-between align-items-center">
+                {/* Título */}
+                <div>
+                    <h1 className="title">Staff Lab</h1>
+                </div>
+                {/* Botones */}
+                <div className="botones">
+                        <button className="btn btnHome mx-2">
+                            <FontAwesomeIcon icon={faHouse}  style={{color: "#eba637", fontSize: "30px"}} />
+                            <Link to="/" className="text-white text-decoration-none"></Link>
+                        </button>
 
-						</th>
-					</tr>
-				</thead>
-				<tbody>{table}</tbody>
-			</table>
+                        <button className="btn btnCS mx-2 ">
+                            <Link to="/login" className="text-white text-decoration-none">Cerrar Sesión </Link>
+                        </button>
+
+                        <button className="btn btnUser mx-2">
+                            <FontAwesomeIcon  icon={faCircleUser} style={{color: "#eba637", fontSize: "30px"}}  />
+                            <Link to="/" className="text-white text-decoration-none"></Link>
+                        </button>
+                </div>
+            </div>
+			</header>
+			<h1>Listado de Nomina</h1>
+			<div className="containerListado">
+            
+            {employees.length > 0 ? (
+                <ul className="list-unstyled d-flex flex-column align-items-center">
+                    <h2 className="titulo-candidatos">Lista de Candidatos</h2>
+                    {employees.map((employee) => (
+                        <li key={employee.id} className="candidate-box p-3 mb-3 d-flex justify-content-between align-items-center">
+                            <div className="nombre">
+                                <FontAwesomeIcon icon={faAddressCard}  style={{fontSize: "30px"}}/>
+                                <span>{employee.applicant.name} {employee.applicant.second_name} {employee.applicant.last_name} {employee.applicant.second_last_name}</span>
+                            </div>
+                            <button className="btn btnMI" onClick={() => handleOpenModal(employee)}>Más información</button>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p className="text-center">Cargando Empleados...</p>
+            )}
 			{isModalOpen && (
-				<InformacionNomina onClose={handleCloseModal} employeeId={employee.id} />
+				<div className="modal">
+				<div className="modal-dialog">
+					<div className="modal-content">
+					<div className="modal-header">
+						<h5 className="modal-title">Información de Nomina</h5>
+						{/* <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}>Cerrar</button> */}
+					</div>
+					<div className="modal-body">
+						{/* <p>Cédula: {employee.id}</p> */}
+						<p>Nombre: {selectedEmployee.applicant.name}</p>
+						<p>Segundo Nombre: {selectedEmployee.applicant.secondName}</p>
+						<p>Apellido: {selectedEmployee.applicant.lastName}</p>
+						<p>Segundo Apellido: {selectedEmployee.applicant.secondLastName}</p>
+						<p>Teléfono: {selectedEmployee.applicant.phoneNumber}</p>
+						<p>Correo: {selectedEmployee.applicant.email}</p>
+						<p>Sueldo Base: {selectedEmployee.sueldo_base}</p>
+						<p>Horas Extra: {selectedEmployee.extra_hours}</p>
+						<p>Bonificacion: {selectedEmployee.bonificacion}</p>
+						<p>Auxilio Rodamiento: {selectedEmployee.auxilio_rodamiento}</p>
+						<p>Ultimo Pago: {selectedEmployee.last_payment}</p>
+						<p>Fecha Contratado: {selectedEmployee.date_hired}</p>
+					</div>
+					<div className="modal-footer">
+						<button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={handleCloseModal}>Close</button>
+					</div>
+					</div>
+				</div>
+				</div>
 			)}
+			</div>
 			{error && <p>{error}</p>}
 			<Link to="/nomina">Volver</Link>
-
-
-
-			
 		</div>
 	);
 }

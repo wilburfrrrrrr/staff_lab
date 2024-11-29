@@ -1,11 +1,10 @@
 const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
-export async function apiClientMultimedia(endpoint, method, { body, ...customConfig } = {}){
+export async function apiClientMultimedia(endpoint,  { body, ...customConfig } = {}){
 	console.log(process.env);
 	console.log(BASE_URL);
 	const headers = { 'Content-Type': 'multiplatform/data' };
 	const config = {
-		method: method,
 		...customConfig,
 		headers: {
 			...headers,

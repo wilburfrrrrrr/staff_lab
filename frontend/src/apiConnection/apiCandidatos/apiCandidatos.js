@@ -2,7 +2,9 @@ import { protectedApi } from "../protected/apiProtectedClient";
 
 export async function getApplicants() {
     try {
-        const applicants = await protectedApi("applicants", "GET");
+        const applicants = await protectedApi("applicants", {
+			method: 'GET'
+		});
         return applicants;
     } catch (error) {
         console.error("Error fetching applicants:", error);
@@ -12,7 +14,9 @@ export async function getApplicants() {
 
 export async function preselectApplicant(id) {
     try {
-        const response = await protectedApi(`applicants/preselect/${id}`, 'PUT');
+        const response = await protectedApi(`applicants/preselect/${id}`, {
+			method: 'PUT'
+		});
         return response;
     } catch (error) {
         console.error('Error preselecting applicant:', error);
@@ -22,7 +26,9 @@ export async function preselectApplicant(id) {
 
 export async function deleteApplicant(id) {
     try {
-        const response = await protectedApi(`applicants/${id}`, 'DELETE');
+        const response = await protectedApi(`applicants/${id}`, {
+			method: 'DELETE'
+		});
         return response;
     } catch (error) {
         console.error('Error deleting applicant:', error);
@@ -32,7 +38,9 @@ export async function deleteApplicant(id) {
 
 export async function getApplicantsByState(state) {
     try {
-        const response = await protectedApi(`applicants/state?state=${state}`, 'GET');
+        const response = await protectedApi(`applicants/state?state=${state}`, {
+			method: 'GET'
+		});
         return response;
     } catch (error) {
         console.error('Error fetching applicants by state:', error);

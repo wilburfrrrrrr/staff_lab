@@ -1,26 +1,25 @@
 const BASE_URL = "http://localhost:8000";  
 
-export async function apiClient(endpoint, method, { body, ...customConfig } = {}){
-	console.log(process.env);
-	console.log(BASE_URL);
+export async function apiClient(endpoint, { body, ...customConfig } = {}){
 	const headers = { 'Content-Type': 'application/json' };
+	console.log(`body: ${body}`);
 	const config = {
-		method: method,
 		...customConfig,
 		headers: {
 			...headers,
 			...customConfig.headers,
 		},
+		body: body,
 	};
 
 	if(body){
-		console.log(body);
+		console.log(`body: ${body}`);
 		config.body = await JSON.stringify(body);
-		console.log(config.body);
+		console.log(`config body: ${config.body}`);
 	}
 
 	try {
-		console.log(config);
+		// console.log(config);
 		const response = await fetch(`${BASE_URL}/${endpoint}`, config);
 		const data = await response.json();
 		console.log(data);

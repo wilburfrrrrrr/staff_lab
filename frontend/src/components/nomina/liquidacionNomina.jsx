@@ -2,6 +2,9 @@ import { payEmployee, getEmployees } from "../../apiConnection/apiEmployees/apiE
 // import { NavBar } from "../navBar/navBar";
 import React from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faCircleUser, faHouse, faAddressCard} from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from "react-router-dom";
 
 export default function LiquidacionNomina() {
@@ -12,9 +15,8 @@ export default function LiquidacionNomina() {
 	const navigate = useNavigate();
 
 	async function handlePayment(e) {
-		e.preventDefault();
 		try {
-			await payEmployee({ employee });
+			await payEmployee( employee.id );
 			// navigate("/nomina");
 		} catch (error) {
 			setError(error);
@@ -27,14 +29,14 @@ export default function LiquidacionNomina() {
 
 	// table to show all the employes
 	const table = employees.map((employee) => (
-		<tr key={employee.id}>
-			<td>{employee.applicant_id}</td>
-			<td>{employee.name}</td>
-			<td>{employee.second_name}</td>
-			<td>{employee.last_name}</td>
-			<td>{employee.second_last_name}</td>
-			<td>{employee.phone}</td>
-			<td>{employee.email}</td>
+		<tr key={employee.applicant.id}>
+			<td>{employee.applicant.applicant_id}</td>
+			<td>{employee.applicant.name}</td>
+			<td>{employee.applicant.second_name}</td>
+			<td>{employee.applicant.last_name}</td>
+			<td>{employee.applicant.second_last_name}</td>
+			<td>{employee.applicant.phone}</td>
+			<td>{employee.applicant.email}</td>
 			<td>
 				<button className="btn" onClick={() => handlePayment(employee)}>Realizar Liquidacion</button>
 			</td>
@@ -44,25 +46,51 @@ export default function LiquidacionNomina() {
 	return (
 		<div className="container d-flex justify-content-center align-items-center vh-100">
 			{/* <NavBar /> */}
+			<header className="header">
+            <div className="container d-flex justify-content-between align-items-center">
+                {/* Título */}
+                <div>
+                    <h1 className="title">Staff Lab</h1>
+                </div>
+                {/* Botones */}
+                <div className="botones">
+                        <button className="btn btnHome mx-2">
+                            <FontAwesomeIcon icon={faHouse}  style={{color: "#eba637", fontSize: "30px"}} />
+                            <Link to="/" className="text-white text-decoration-none"></Link>
+                        </button>
+
+                        <button className="btn btnCS mx-2 ">
+                            <Link to="/login" className="text-white text-decoration-none">Cerrar Sesión </Link>
+                        </button>
+
+                        <button className="btn btnUser mx-2">
+                            <FontAwesomeIcon  icon={faCircleUser} style={{color: "#eba637", fontSize: "30px"}}  />
+                            <Link to="/" className="text-white text-decoration-none"></Link>
+                        </button>
+                </div>
+            </div>
+        </header>
 			<h1>Liquidaciones</h1>
-			<table>
-				<thead>
-					<tr>
-						<th>Cédula</th>
-						<th>Nombre</th>
-						<th>Segundo Nombre</th>
-						<th>Apellido</th>
-						<th>Segundo Apellido</th>
-						<th>Teléfono</th>
-						<th>Correo</th>
-						<th>Género</th>
-						<th>Estado</th>
-						<th>Salario</th>
-						<th>Acciones</th>
-					</tr>
-				</thead>
-				<tbody>{table}</tbody>
-			</table>
+			<div className="containerListado">
+            
+            {employees.length > 0 ? (
+                <ul className="list-unstyled d-flex flex-column align-items-center">
+                    <h2 className="titulo-candidatos">Lista de Candidatos</h2>
+                    {employees.map((employee) => (
+                        <li key={employee.id} className="candidate-box p-3 mb-3 d-flex justify-content-between align-items-center">
+                            <div className="nombre">
+                                <FontAwesomeIcon icon={faAddressCard}  style={{fontSize: "30px"}}/>
+                                <span>{employee.applicant.name} {employee.applicant.second_name} {employee.applicant.last_name} {employee.applicant.second_last_name}</span>
+                            </div>
+                            <button className="btn btnMI" onClick={() => handlePayment(employee)}>Realizar Liquidacion</button>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p className="text-center">Cargando Empleados...</p>
+            )}
+			
+			</div>
 			{error && <p>{error}</p>}
 		</div>
 	);

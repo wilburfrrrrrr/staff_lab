@@ -27,12 +27,12 @@ export default function Login() {
 		try {
 			const response = await login({ email, password });
 			localStorage.setItem('token', response.token);
-			console.log(response);
+			// console.log(response);
 			//navigate('/user_info');
 		}
 		catch(error){
 			setError(error);
-			console.log(error);
+			// console.log(error);
 		}
 	}
 
