@@ -25,7 +25,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/preSeleccion" element={<Preseleccion/>} />
             {/* <Route path="/seleccion" element={<CandidatosSeleccionados/>} /> */}
-            {/* <Route path="/user_info" element={<PrivateRoute><UserInfo /></PrivateRoute>} /> */}
+            {/* <Route path="/user_info" element={<RutaAnalistaPrivada><UserInfo /></RutaAnalistaPrivada>} /> */}
             </Routes>
         </Router>
       </AuthProvider>

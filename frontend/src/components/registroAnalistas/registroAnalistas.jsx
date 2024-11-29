@@ -30,7 +30,7 @@ export default function RegistroAnalistas() {
 	}
 
 	return (
-		<div className="container d-flex justify-content-center align-items-center vh-100">
+		<div className="container" id="contenedorGeneral">
 			{/* <NavBar /> */}
 			<header className="header">
             <div className="container d-flex justify-content-between align-items-center">
@@ -58,70 +58,86 @@ export default function RegistroAnalistas() {
         </header>
 			<h1>Registro de Analistas</h1>
 			<form className="mb-3" onSubmit={handleSubmit}>
-				<label className="form-label" htmlFor="userId">Cédula:</label>
-				<input
-					id="userId"
-					type="text"
-					className="form-control"
-					value={userId}
-					onChange={(e) => setUserId(e.target.value)}
-				/>
-				<label className="form-label" htmlFor="name">Nombre:</label>
-				<input
-					id="name"
-					type="text"
-					className="form-control"
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-				/>
-				<label className="form-label" htmlFor="secondName">Segundo Nombre:</label>
-				<input
-					id="secondName"
-					type="text"
-					className="form-control"
-					value={secondName}
-					onChange={(e) => setSecondName(e.target.value)}
-				/>
-				<label className="form-label" htmlFor="lastName">Apellido:</label>
-				<input
-					id="lastName"
-					type="text"
-					className="form-control"
-					value={lastName}
-					onChange={(e) => setLastName(e.target.value)}
-				/>
-				<label className="form-label" htmlFor="secondLastName">Segundo Apellido:</label>
-				<input
-					id="secondLastName"
-					type="text"
-					className="form-control"
-					value={secondLastName}
-					onChange={(e) => setSecondLastName(e.target.value)}
-				/>
-				<label className="form-label" htmlFor="phoneNumber">Teléfono:</label>
-				<input
-					id="phoneNumber"
-					type="text"
-					className="form-control"
-					value={phoneNumber}
-					onChange={(e) => setPhoneNumber(e.target.value)}
-				/>
-				<label htmlFor="email" className="form-label"> Email</label>
-				<input
-					id="email"
-					type="email"
-					className="form-control"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-				<label htmlFor="password" className="form-label"> Contraseña</label>
-				<input
-					id="password"
-					type="password"
-					className="form-control"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-				/>
+				<div className="form-group my-3 d-flex align-items-center">					
+					<input
+						id="userId"
+						type="text"
+						className="form-control"
+						placeholder="Cedula"
+						value={userId}
+						onChange={(e) => setUserId(e.target.value)}
+					/>
+				</div>
+				<div className="form-group my-3 d-flex align-items-center">				
+					<input
+						id="name"
+						type="text"
+						placeholder="Nombre"
+						className="form-control"
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+					/>
+				</div>
+				<div className="form-group my-3 d-flex align-items-center">				
+					<input
+						id="secondName"
+						type="text"
+						className="form-control"
+						placeholder="Segundo Nombre"
+						value={secondName}
+						onChange={(e) => setSecondName(e.target.value)}
+					/>
+				</div>
+				<div className="form-group my-3 d-flex align-items-center">				
+					<input
+						id="lastName"
+						type="text"
+						className="form-control"
+						placeholder="Apellido"
+						value={lastName}
+						onChange={(e) => setLastName(e.target.value)}
+					/>
+				</div>
+				<div className="form-group my-3 d-flex align-items-center">				
+					<input
+						id="secondLastName"
+						type="text"
+						placeholder="Segundo Apellido"
+						className="form-control"
+						value={secondLastName}
+						onChange={(e) => setSecondLastName(e.target.value)}
+					/>
+				</div>
+				<div className="form-group my-3 d-flex align-items-center">				
+					<input
+						id="phoneNumber"
+						type="text"
+						placeholder="Telefono"
+						className="form-control"
+						value={phoneNumber}
+						onChange={(e) => setPhoneNumber(e.target.value)}
+					/>
+				</div>
+				<div className="form-group my-3 d-flex align-items-center">				
+					<input
+						id="email"
+						type="email"
+						placeholder="Email"
+						className="form-control"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+					/>
+				</div>
+				<div className="form-group my-3 d-flex align-items-center">				
+					<input
+						id="password"
+						type="password"
+						placeholder="Contraseña"
+						className="form-control"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+					/>
+				</div>
 				<button type="submit" className="btn">Registrar</button>
 			</form>
 			{error && <p>{error}</p>}

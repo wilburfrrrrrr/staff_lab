@@ -1,5 +1,4 @@
 import { getEmployees, getEmployee } from "../../apiConnection/apiEmployees/apiEmployee";
-import InformacionNomina from "../infoNomina/infoNomina";
 // import { NavBar } from "../navBar/navBar";
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -33,8 +32,7 @@ export default function ListadoNomina() {
 
 
 	return (
-		<div className="container d-flex justify-content-center align-items-center vh-100">
-			{/* <NavBar /> */}
+		<div className="container" id="contenedorGeneral">
 			<header className="header">
             <div className="container d-flex justify-content-between align-items-center">
                 {/* Título */}
@@ -59,12 +57,11 @@ export default function ListadoNomina() {
                 </div>
             </div>
 			</header>
-			<h1>Listado de Nomina</h1>
 			<div className="containerListado">
             
             {employees.length > 0 ? (
                 <ul className="list-unstyled d-flex flex-column align-items-center">
-                    <h2 className="titulo-candidatos">Lista de Candidatos</h2>
+                    <h2 className="titulo-candidatos">Lista de Nominas</h2>
                     {employees.map((employee) => (
                         <li key={employee.id} className="candidate-box p-3 mb-3 d-flex justify-content-between align-items-center">
                             <div className="nombre">
@@ -78,7 +75,7 @@ export default function ListadoNomina() {
             ) : (
                 <p className="text-center">Cargando Empleados...</p>
             )}
-			{isModalOpen && (
+			{isModalOpen && selectedEmployee && (
 				<div className="modal">
 				<div className="modal-dialog">
 					<div className="modal-content">

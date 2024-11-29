@@ -3,6 +3,10 @@ import { createApplicant } from "../../apiConnection/apiApplicant/apiApplicant";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faCircleUser, faHouse, faSquareCaretLeft,faAddressCard} from '@fortawesome/free-solid-svg-icons';
+import '../../styleSheets/general.css';
 
 export default function RegistroPerfiles() {
 	const [formData, setFormData] = React.useState({
@@ -14,13 +18,11 @@ export default function RegistroPerfiles() {
 		phoneNumber: "",
 		email: "",
 		genre: "",
-		state: "",
 		cv: null,
 	});
 	const [error, setError] = React.useState(null);
 	const navigate = useNavigate();
 
-	console.log('szs');
 
 	async function handleSubmit(e) {
 		const dataToSend = new FormData();
@@ -31,11 +33,10 @@ export default function RegistroPerfiles() {
 		dataToSend.append("phone_number", formData.phoneNumber);
 		dataToSend.append("email", formData.email);
 		dataToSend.append("genre", formData.genre);
-		dataToSend.append("state", formData.state);
 		if (formData.cv){
 			dataToSend.append("cv", formData.cv);
 		}
-		e.preventDefault();
+		// e.preventDefault();
 		
 		try {
 			await createApplicant(dataToSend);
@@ -56,92 +57,140 @@ export default function RegistroPerfiles() {
 	}
 
 	return (
-		<div className="container d-flex justify-content-center align-items-center vh-100">
+		<div className="container" id="contenedorGeneral">
+			<header className="header">
+            <div className="container d-flex justify-content-between align-items-center">
+                {/* Título */}
+                <div>
+                    <h1 className="title">Staff Lab</h1>
+                </div>
+                {/* Botones */}
+					<div className="botones">
+							<button className="btn btnHome mx-2">
+								<FontAwesomeIcon icon={faHouse}  style={{color: "#eba637", fontSize: "30px"}} />
+								<Link to="/" className="text-white text-decoration-none"></Link>
+							</button>
+
+							<button className="btn btnCS mx-2 ">
+								<Link to="/login" className="text-white text-decoration-none">Cerrar Sesión </Link>
+							</button>
+
+							<button className="btn btnUser mx-2">
+								<FontAwesomeIcon  icon={faCircleUser} style={{color: "#eba637", fontSize: "30px"}}  />
+								<Link to="/" className="text-white text-decoration-none"></Link>
+							</button>
+					</div>
+				</div>
+			</header>
 			{/* <NavBar /> */}
 			<h1>Registro de Perfiles</h1>
 			<form className="mb-3" onSubmit={handleSubmit}>
-				<label className="form-label" htmlFor="userId">Cédula:</label>
-				<input
-					id="userId"
-					className="form-control"
-					type="text"
-					value={formData.userId}
-					onChange={handleChange}
-				/>
-				<label className="form-label" htmlFor="name">Nombre:</label>
-				<input
-					id="name"
-					className="form-control"
-					type="text"
-					value={formData.name}
-					onChange={handleChange}
-				/>
-				<label className="form-label" htmlFor="secondName">Segundo Nombre:</label>
-				<input
-					id="secondName"
-					className="form-control"
-					type="text"
-					value={formData.secondName}
-					onChange={handleChange}
-				/>
-				<label className="form-label" htmlFor="lastName">Apellido:</label>
-				<input
-					id="lastName"
-					className="form-control"
-					type="text"
-					value={formData.lastName}
-					onChange={handleChange}
-				/>
-				<label className="form-label" htmlFor="secondLastName">Segundo Apellido:</label>
-				<input
-					id="secondLastName"
-					className="form-control"
-					type="text"
-					value={formData.secondLastName}
-					onChange={handleChange}
-				/>
-				<label className="form-label" htmlFor="phoneNumber">Teléfono:</label>
-				<input
-					id="phoneNumber"
-					className="form-control"
-					type="text"
-					value={formData.phoneNumber}
-					onChange={handleChange}
-				/>
-				<label className="form-label" htmlFor="email">Correo:</label>
-				<input
-					id="email"
-					className="form-control"
-					type="text"
-					value={formData.email}
-					onChange={handleChange}
-				/>
-				<label className="form-label" htmlFor="genre">Género:</label>
-				<input
-					id="genre"
-					className="form-control"
-					type="text"
-					value={formData.genre}
-					onChange={handleChange}
-				/>
-				<label className="form-label" htmlFor="state">Estado:</label>
-				<input
-					id="state"
-					className="form-control"
-					type="text"
-					value={formData.state}
-					onChange={handleChange}
-				/>
-				<label className="form-label" htmlFor="cv">Curriculum:</label>
-				<input
-					id="cv"
-					name="cv"
-					className="form-control"
-					type="file"
-					accept="application/pdf"
-					value={formData.cv}
-					onChange={handleFileChange}
-				/>	
+				<div className="form-group my-3 d-flex align-items-center">
+					<input
+						id="userId"
+						name="userId"
+						className="form-control"
+						type="text"
+						value={formData.userId}
+						onChange={handleChange}
+						placeholder="Cedula"
+					/>
+				</div>
+				<div className="form-group my-3 d-flex align-items-center">
+					<input
+						id="name"
+						className="form-control"
+						name="name"
+						type="text"
+						value={formData.name}
+						onChange={handleChange}
+						placeholder="Nombre"
+					/>
+				</div>
+				<div className="form-group my-3 d-flex align-items-center">
+					<input
+						id="secondName"
+						className="form-control"
+						name="secondName"
+						type="text"
+						value={formData.secondName}
+						onChange={handleChange}
+						placeholder="Segundo Nombre"
+					/>
+				</div>
+				<div className="form-group my-3 d-flex align-items-center">
+					<input
+						id="lastName"
+						className="form-control"
+						name="lastName"
+						type="text"
+						value={formData.lastName}
+						onChange={handleChange}
+						placeholder="Apellido"
+					/>
+				</div>
+				<div className="form-group my-3 d-flex align-items-center">
+					<input
+						id="secondLastName"
+						className="form-control"
+						name="secondLastName"
+						type="text"
+						value={formData.secondLastName}
+						onChange={handleChange}
+						placeholder="Segundo Apellido"
+					/>
+				</div>
+				<div className="form-group my-3 d-flex align-items-center">
+					<input
+						id="phoneNumber"
+						className="form-control"
+						name="phoneNumber"
+						type="text"
+						value={formData.phoneNumber}
+						onChange={handleChange}
+						placeholder="Teléfono"
+					/>
+				</div>
+				<div className="form-group my-3 d-flex align-items-center">
+					<input
+						id="email"
+						className="form-control"
+						name="email"
+						type="text"
+						value={formData.email}
+						placeholder="Email"
+						onChange={handleChange}
+					/>
+				</div>
+				<div className="form-group my-3 d-flex align-items-center">
+					<select
+						name="gender"
+						className="multiples-opciones"
+						onChange={handleChange}
+						required
+						value={formData.gender}
+						placeholder="Genero"
+					>
+						<option value="">Género</option>
+						<option value="Masculino">Masculino</option>
+						<option value="Femenino">Femenino</option>
+						<option value="Prefiere no decirlo">Prefiero no decirlo</option>
+						<option value="Otro">Otro</option>
+					</select>
+				</div>
+				<div className="form-group my-3 d-flex align-items-center">
+					<label className="form-label" htmlFor="cv">Curriculum:</label>
+					<input
+						id="cv"
+						name="cv"
+						className="form-control"
+						type="file"
+						accept="application/pdf"
+						value={formData.cv}
+						placeholder="Hoja de Vida"
+						onChange={handleFileChange}
+					/>	
+				</div>
 				<button type="submit" className="btn">Registrar</button>
 			</form>
 		</div>

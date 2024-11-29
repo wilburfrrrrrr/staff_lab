@@ -12,7 +12,9 @@ export default function LiquidacionNomina() {
 	const [employee, setEmployee] = React.useState("");
 	const [salary, setSalary] = React.useState("");
 	const [error, setError] = React.useState(null);
+	const [paymentComplete, setPaymentComplete] = React.useState(false);
 	const navigate = useNavigate();
+
 
 	async function handlePayment(e) {
 		try {
@@ -27,24 +29,9 @@ export default function LiquidacionNomina() {
 		getEmployees().then((employees) => setEmployees(employees));
 	}, []);
 
-	// table to show all the employes
-	const table = employees.map((employee) => (
-		<tr key={employee.applicant.id}>
-			<td>{employee.applicant.applicant_id}</td>
-			<td>{employee.applicant.name}</td>
-			<td>{employee.applicant.second_name}</td>
-			<td>{employee.applicant.last_name}</td>
-			<td>{employee.applicant.second_last_name}</td>
-			<td>{employee.applicant.phone}</td>
-			<td>{employee.applicant.email}</td>
-			<td>
-				<button className="btn" onClick={() => handlePayment(employee)}>Realizar Liquidacion</button>
-			</td>
-		</tr>
-	));
 
 	return (
-		<div className="container d-flex justify-content-center align-items-center vh-100">
+		<div className="container" id="contenedorGeneral">
 			{/* <NavBar /> */}
 			<header className="header">
             <div className="container d-flex justify-content-between align-items-center">
@@ -70,12 +57,11 @@ export default function LiquidacionNomina() {
                 </div>
             </div>
         </header>
-			<h1>Liquidaciones</h1>
 			<div className="containerListado">
             
             {employees.length > 0 ? (
                 <ul className="list-unstyled d-flex flex-column align-items-center">
-                    <h2 className="titulo-candidatos">Lista de Candidatos</h2>
+                    <h2 className="titulo-candidatos">Liquidaciones de Nomina</h2>
                     {employees.map((employee) => (
                         <li key={employee.id} className="candidate-box p-3 mb-3 d-flex justify-content-between align-items-center">
                             <div className="nombre">
