@@ -1,13 +1,14 @@
-const BASE_URL = process.env.REACT_APP_BACKEND_URL;
+const BASE_URL = "http://localhost:8000";
 
 export async function apiClientMultimedia(endpoint,  { body, ...customConfig } = {}){
 	console.log(process.env);
+	console.log(body);
 	console.log(BASE_URL);
-	const headers = { 'Content-Type': 'multiplatform/data' };
+	// const headers = { 'Content-Type': 'multipart/form-data' };
 	const config = {
 		...customConfig,
 		headers: {
-			...headers,
+			// ...headers,
 			...customConfig.headers,
 		},
 		body: body,

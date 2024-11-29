@@ -4,6 +4,7 @@ import { apiClientMultimedia } from "../apiMultimedia/apiMultimedia";
 // import { jwtDecode } from "jwt-decode";
 
 export async function createApplicant( dataToSend ) {
+		console.log("Datos a mandar", dataToSend.get("genre"));
 		return await apiClientMultimedia("applicants", {
 			method: 'POST',
 			body: dataToSend,

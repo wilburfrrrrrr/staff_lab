@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCircleUser, faHouse, faSquareCaretLeft,faAddressCard} from '@fortawesome/free-solid-svg-icons';
-import '../../styleSheets/general.css';
+import '../../styleSheets/registroPerfiles.css';
 
 export default function RegistroPerfiles() {
 	const [formData, setFormData] = React.useState({
@@ -25,22 +25,25 @@ export default function RegistroPerfiles() {
 
 
 	async function handleSubmit(e) {
+
 		const dataToSend = new FormData();
 		dataToSend.append("name", formData.name);
 		dataToSend.append("second_name", formData.secondName);
 		dataToSend.append("last_name", formData.lastName);
 		dataToSend.append("second_last_name", formData.secondLastName);
-		dataToSend.append("phone_number", formData.phoneNumber);
+		dataToSend.append("phone", formData.phoneNumber);
 		dataToSend.append("email", formData.email);
 		dataToSend.append("genre", formData.genre);
 		if (formData.cv){
 			dataToSend.append("cv", formData.cv);
 		}
-		// e.preventDefault();
+
+		e.preventDefault();
 		
 		try {
+			console.log(`dato: ${dataToSend.get("genre")}`);
 			await createApplicant(dataToSend);
-			navigate("/perfiles");
+			// navigate("/perfiles");
 		} catch (error) {
 			setError(error);
 		}
@@ -164,11 +167,11 @@ export default function RegistroPerfiles() {
 				</div>
 				<div className="form-group my-3 d-flex align-items-center">
 					<select
-						name="gender"
+						name="genre"
 						className="multiples-opciones"
 						onChange={handleChange}
 						required
-						value={formData.gender}
+						value={formData.genre}
 						placeholder="Genero"
 					>
 						<option value="">Género</option>
@@ -185,8 +188,8 @@ export default function RegistroPerfiles() {
 						name="cv"
 						className="form-control"
 						type="file"
-						accept="application/pdf"
-						value={formData.cv}
+						// accept="application/pdf"
+						// value={formData.cv}
 						placeholder="Hoja de Vida"
 						onChange={handleFileChange}
 					/>	
