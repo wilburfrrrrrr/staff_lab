@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Murecho:wght@100..900&family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap');
+.OpcionesAnalista{
+    font-family: Murecho;
+    height: 100vh; /* Altura de la pantalla */
+}
+.btnPrese{
+    font-weight: 700;
+    font-size: xx-large;
+    background-color: #EBA637;
+    border-radius: 30px;
+    cursor: pointer;
+    height: 30%;
+    width: 50%;
+}
+.btnPrese:hover{
+    background-color: #2C3E50; 
+    color: #fff;
+    transform: scale(0.98); 
+    box-shadow: 0 5px 5px rgba(44, 6, 80, 0.5);
+
+}
+
+
+.btnPrese2{
+    font-weight: 700;
+    font-size: xx-large;
+    background-color: #EBA637;
+    border-radius: 30px;
+    cursor: pointer;
+    height: 30%;
+    width: 50%;
+}
+.btnPrese2:hover{
+    background-color: #2C3E50; 
+    color: #fff;
+    transform: scale(0.98); 
+    box-shadow: 0 5px 5px rgba(44, 6, 80, 0.5);
+
+}
+
+
+

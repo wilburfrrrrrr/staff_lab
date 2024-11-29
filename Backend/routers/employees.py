@@ -54,6 +54,7 @@ def update_employee(id: int, employee: Employee) -> dict:
 
 @employee_router.delete("/employee/{id}", tags=['employee'], response_model=dict, dependencies=[Depends(JWTBearer())])
 def delete_employee(id: int) -> dict:
+    
     if not EmployeeService(Session()).get_employee(id):
         return JSONResponse(content={"message": "Employee not found"}, status_code=404)
     EmployeeService(Session()).delete_employee(id)

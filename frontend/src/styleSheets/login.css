@@ -34,7 +34,7 @@
     font-size: 1rem;
     box-shadow: 0 5px 5px rgba(44, 62, 80, 0.5);
 
-  }
+}
 
 .btnSub{
     background-color: #EBA637;
@@ -44,9 +44,7 @@
 .btnSub:hover{
     background-color: #2C3E50; 
     color: #fff;
-  }
-.btnSub:active {
-    background-color: #2C3E50; 
     transform: scale(0.98); 
     box-shadow: 0 5px 5px rgba(44, 6, 80, 0.5);
-  } 
+    
+}
